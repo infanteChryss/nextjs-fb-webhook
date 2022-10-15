@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
     const client = await clientPromise;
     const db = client.db("test");
-    let bodyObject = JSON.parse(body);
+    let bodyObject = JSON.parse(body.entry);
     let myPost = await db.collection("items").insertOne(bodyObject);
     res.json(myPost.ops[0]);
     // Checks this is an event from a page subscription
