@@ -8,26 +8,26 @@ export default async function handler(req, res) {
     const db = client.db("test");
     let bodyObject = JSON.parse(body);
     let myPost = await db.collection("items").insertOne(bodyObject);
-  
+    res.json(myPost.ops[0]);
     // Checks this is an event from a page subscription
-    if (body.object === 'page') {
+    // if (body.object === 'page') {
   
-        // Iterates over each entry - there may be multiple if batched
-        body.entry.forEach(function(entry) {
-          // Gets the message. entry.messaging is an array, but 
-          // will only ever contain one message, so we get index 0
-          let webhook_event = entry.messaging[0];
-          console.log(webhook_event);
-        });
+    //     // Iterates over each entry - there may be multiple if batched
+    //     body.entry.forEach(function(entry) {
+    //       // Gets the message. entry.messaging is an array, but 
+    //       // will only ever contain one message, so we get index 0
+    //       let webhook_event = entry.messaging[0];
+    //       console.log(webhook_event);
+    //     });
 
-      // res.json(myPost.ops[0]);
+    //   // res.json(myPost.ops[0]);
   
-      // Returns a '200 OK' response to all requests
-      res.status(200).send(myPost.ops[0]);
-    } else {
-      // Returns a '404 Not Found' if event is not from a page subscription
-      res.sendStatus(404);
-    }
+    //   // Returns a '200 OK' response to all requests
+    //   res.status(200).send(myPost.ops[0]);
+    // } else {
+    //   // Returns a '404 Not Found' if event is not from a page subscription
+    //   res.sendStatus(404);
+    // }
   } else {
     // Your verify token. Should be a random string.
     let VERIFY_TOKEN = "YOUR_VERIFY_TOKEN"
