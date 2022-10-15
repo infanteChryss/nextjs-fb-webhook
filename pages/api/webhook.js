@@ -33,7 +33,7 @@ export default async function handler(req, res) {
             res.sendStatus(403);      
           }
         } else {
-          res.status(200).send("No Params Received");
+          res.status(404).send("No Params Received");
         }
       break;
   }
