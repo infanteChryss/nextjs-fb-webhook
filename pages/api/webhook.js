@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             
           } else {
             // Responds with '403 Forbidden' if verify tokens do not match
-            res.sendStatus(403);      
+            res.status(403).send("Forbidden Access");      
           }
         } else {
           res.status(404).send("No Params Received");
