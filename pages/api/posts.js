@@ -6,10 +6,11 @@ export default async function handler(req, res) {
     switch (req.method) {
         case "POST":
             let bodyObject = JSON.parse(req.body);
-            let myPost = await db.collection("insert").insertOne(bodyObject);
+            let myPost = await db.collection("items").insertOne(bodyObject);
             res.json(myPost.ops[0]);
         break;
         case "GET":
+            const client = await clientPromise;
             const allPosts = await db.collection("items").find().toArray();
             res.json({ data: allPosts });
         break;

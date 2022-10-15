@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       const client = await clientPromise;
       const db = client.db("test");
       let bodyObject = JSON.parse(body.entry);
-      let myPost = await db.collection("insert").insertOne(bodyObject);
+      let myPost = await db.collection("items").insertOne(bodyObject);
       // res.json(myPost.ops[0]);
   
       // Returns a '200 OK' response to all requests
